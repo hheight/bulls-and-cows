@@ -4,26 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bulls and cows</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/main.css">
   </head>
   <body>
-    <h1>Bulls and cows</h1>
-    <div class="rules">
-      <p>Guess all of the digits</p>
-      <button class="start">Start game</button>
+    <div class="bg-photo">
+      <img src="./images/bg-img.jpg" alt="Farm" class="bg-img">
     </div>
-    <div class="game hidden">
-      <p class="message"></p>
-      <form action="">
-        <input type="text" class="input" minlength="4" maxlength="4">
-        <button class="check">Check</button>
-      </form>
-      <div>
-        <p>Guesses:</p>
-        <div class="prev"></div>
+    <main class="main">
+      <div class="container">
+        <div class="game">
+          <div class="game__headline">
+            <div class="game__photo">
+              <img src="./images/bull.png" alt="Bull" class="game__image">
+            </div>
+            <h1 class="game__title">Bulls & cows</h1>
+            <div class="game__photo">
+              <img src="./images/cow.png" alt="Cow" class="game__image">
+            </div>
+          </div>
+          <button class="btn btn--primary btn--centered start">Start game</button>
+          <div class="game__window started hidden">
+            <p class="game__rule">Guess all of the digits</p>
+            <p class="game__error error-msg"></p>
+            <form action="" class="game__form">
+              <input type="text" class="game__input input" minlength="4" maxlength="4">
+              <button class="btn btn--secondary check">Check</button>
+            </form>
+            <div class="game__guesses">
+              <p class="game__guess-title">Previous guesses:</p>
+              <div class="game__previous prev"></div>
+            </div>
+            <button class="btn btn--secondary btn--danger end">End game</button>
+          </div>
+        </div>
       </div>
-      <button class="end">End game</button>
-    </div>
+    </main>
     <script type="text/javascript" src="scripts/main.js"></script>
   </body>
 </html>
