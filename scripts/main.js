@@ -1,8 +1,7 @@
 'use strict';
 
-const rulesWindow = document.querySelector('.rules');
-const gameWindow = document.querySelector('.game');
-const alertMsg = document.querySelector('.message');
+const gameWindow = document.querySelector('.started');
+const alertMsg = document.querySelector('.error-msg');
 const userInput = document.querySelector('.input');
 const startBtn = document.querySelector('.start');
 const checkBtn = document.querySelector('.check');
@@ -19,7 +18,7 @@ endBtn.addEventListener('click', endGame);
 function gameStart() {
   textReset();
   gameWindow.classList.remove('hidden');
-  rulesWindow.classList.add('hidden');
+  startBtn.classList.add('hidden');
 
   const generateDigit = () => Math.floor(Math.random() * 10);
 
@@ -35,40 +34,45 @@ function gameStart() {
 }
 
 function bullsAndCows() {
-  if (!enteredNumber) {
-    alertMsg.innerHTML = 'Enter the number, please';
-  } else if (enteredNumber.length !== 4) {
-    alertMsg.innerHTML = 'The number must contain 4 digits';
-  } else if (/\D|(.).*\1/.test(enteredNumber)) {
-    alertMsg.innerHTML = 'The number can\'t contain letter or repeated digit';
-  } else {
-    alertMsg.innerHTML = '';
+  switch (true) {
+    case !enteredNumber:
+      alertMsg.innerHTML = 'Enter the digits, please';
+      break;
+    case enteredNumber.length !== 4:
+      alertMsg.innerHTML = 'Enter four digits, please';
+      break;
+    case /\D|(.).*\1/.test(enteredNumber):
+      alertMsg.innerHTML = 'Only unique digits, please';
+      break;
+    default:
+      alertMsg.innerHTML = '';
 
-    const animals = {
-      bulls: 0,
-      cows: 0,
-    };
+      const animals = {
+        bulls: 0,
+        cows: 0,
+      };
 
-    for (const num of enteredNumber) {
-      if (generatedNumber.indexOf(num) === enteredNumber.indexOf(num)) {
-        animals.bulls++;
-      } else if (generatedNumber.includes(num)) {
-        animals.cows++;
+      for (const num of enteredNumber) {
+        if (generatedNumber.indexOf(num) === enteredNumber.indexOf(num)) {
+          animals.bulls++;
+        } else if (generatedNumber.includes(num)) {
+          animals.cows++;
+        }
       }
-    }
 
-    if (animals.bulls === 4) {
-      alertMsg.innerHTML = 'You Won!';
-    }
+      if (animals.bulls === 4) {
+        alertMsg.innerHTML = 'You Won! Congratulations!';
+      }
 
-    const prevNum = document.createElement('div');
+      const prevNum = document.createElement('p');
 
-    prevNum.innerHTML = `
-      ${enteredNumber}
-      Bulls:${animals.bulls}
-      Cows: ${animals.cows}
-    `;
-    prevNumbers.prepend(prevNum);
+      prevNum.innerHTML = `
+        ${enteredNumber}
+        Bulls:${animals.bulls}
+        Cows:${animals.cows}
+      `;
+      prevNumbers.prepend(prevNum);
+      break;
   }
 }
 
@@ -81,7 +85,7 @@ function checkNumber(e) {
 
 function endGame() {
   gameWindow.classList.add('hidden');
-  rulesWindow.classList.remove('hidden');
+  startBtn.classList.remove('hidden');
 }
 
 function textReset() {
