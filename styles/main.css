@@ -178,9 +178,6 @@ h1 {
       .game__error {
         top: 54px;
         font-size: 20px; } }
-    @media (max-width: 335px) {
-      .game__error {
-        top: 83px; } }
   .game__guesses {
     margin-top: 30px;
     margin-bottom: 30px; }

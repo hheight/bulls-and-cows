@@ -42,7 +42,7 @@ function bullsAndCows() {
       alertMsg.innerHTML = 'Enter four digits, please';
       break;
     case /\D|(.).*\1/.test(enteredNumber):
-      alertMsg.innerHTML = 'Only unique digits, please';
+      alertMsg.innerHTML = 'There must be only unique digits';
       break;
     default:
       alertMsg.innerHTML = '';
