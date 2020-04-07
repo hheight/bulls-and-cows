@@ -61,7 +61,11 @@ function bullsAndCows() {
       }
 
       if (animals.bulls === 4) {
-        alertMsg.innerHTML = 'You Won! Congratulations!';
+        const attempts = prevNumbers.childElementCount + 1;
+
+        alertMsg.innerHTML = `
+          Congratulations! You guessed with ${attempts} attempts!
+        `;
       }
 
       const prevNum = document.createElement('p');
